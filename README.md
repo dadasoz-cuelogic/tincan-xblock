@@ -66,11 +66,12 @@ Also modify `/edx/app/edxapp/edx-platform/cms/urls.py`:
         from django.conf.urls.static import static
         urlpatterns += static('/scorm/', document_root='/edx/app/edxapp/scorm/')
 
-In production, add to `/edx/app/nginx/sites-enabled/lms`:
+In production, add to `/edx/app/nginx/sites-enabled/lms` and `/edx/app/nginx/sites-enabled/cms`:
 
-    location ~ ^/scorm {
-          root /edx/app/edxapp/scorm/;
-    }
+    location /scorm{
+     alias /edx/app/edxapp/scorm;
+     index  index.html;
+  }
 
 (All of this static location business will go away when someone gets time to fix it.)
 
