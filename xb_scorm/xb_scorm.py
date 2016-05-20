@@ -64,18 +64,7 @@ class SCORMXBlock(XBlock):
     tc_activities_state = Dict(default={}, scope=Scope.user_state)  # stateId -> JSON document
     tc_statements = Dict(default={}, scope=Scope.user_state)  # statementId -> JSON document
 
-    def __init__(self, *args, **kwargs):
-        try:
-
-            XBlock.__init__(self, *args, **kwargs)
-
-            # FIXME: technically, we're not supposed to provide __init__. This
-            # works for now, though...
-            self.scorm_path = DEFAULT_SCORM_PATH
-            if self.override_scorm_path:
-                self.scorm_path = self.override_scorm_path
-        except:
-            pass
+    scorm_path = DEFAULT_SCORM_PATH
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
